@@ -1,0 +1,56 @@
+import java.io.FileReader;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.io.BufferedReader;
+
+public class LoggerApp {
+
+	public static void main(String[] args) {
+
+		// Creates a CSV File with current Year and Month
+		String fileName = new SimpleDateFormat("MM-yyyy'.csv'").format(new Date());
+
+		// Proof of File exist and read the file
+		File f = new File(fileName);
+		if (f.exists() && !f.isDirectory()) {
+			FileReader fr = null;
+			try {
+				fr = new FileReader(f);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			BufferedReader br = new BufferedReader(fr);
+
+		} else {
+			String fileName1 = new SimpleDateFormat("MM-yyyy'.csv'").format(new Date());
+		}
+
+		FileWriter writer;
+		File datei = new File(fileName);
+		// LocalDateTime currentDateTime = LocalDateTime.now();
+
+		try {
+			LocalDateTime currentDateTime = LocalDateTime.now();
+			// System.out.println("Before formatting: " + currentDateTime);
+
+			writer = new FileWriter(datei);
+			// writer.write(currentDateTime.toString());
+			DateTimeFormatter changeDateTimeFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+			writer.write(System.getProperty("line.separator"));
+
+			String formattedDate = changeDateTimeFormat.format(currentDateTime);
+			writer.write(formattedDate);
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+	}
+
+}
