@@ -1,4 +1,4 @@
-# laughing-lamp
+# logData
 
 Hello Guys, i'm new here and i learn Java.
 My english is not the best.
